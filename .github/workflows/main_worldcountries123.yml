@@ -25,6 +25,11 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
+        env:
+          PROD_DATABASE_URL: ${{sercrets.PROD_DATABASE_URL}}
+          PROD_USERNAME: ${{sercrets.PROD_USERNAME}}
+          PROD_PASSWORD: ${{sercrets.PROD_PASSWORD}}
+          
         run: mvn clean install
 
       - name: Upload artifact for deployment job
@@ -60,4 +65,5 @@ jobs:
           app-name: 'worldCountries123'
           slot-name: 'Production'
           package: '*.jar'
+
           
